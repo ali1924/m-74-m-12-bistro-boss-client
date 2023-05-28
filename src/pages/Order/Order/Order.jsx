@@ -37,19 +37,19 @@ const Order = () => {
                     <Tab className="border-0 border-b-4 p-2 text-xl">Drinks</Tab>
                 </TabList>
                 <TabPanel>
-                    <OrderTab item={salad}></OrderTab>
+                    <OrderTab items={salad}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                    <OrderTab item={pizza}></OrderTab>
+                    <OrderTab items={pizza}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                    <OrderTab item={soups}></OrderTab>
+                    <OrderTab items={soups}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                    <OrderTab item={desserts}></OrderTab>
+                    <OrderTab items={desserts}></OrderTab>
                 </TabPanel>
                 <TabPanel>
-                    <OrderTab item={drinks}></OrderTab>
+                    <OrderTab items={drinks}></OrderTab>
                 </TabPanel>
             </Tabs>
         </div>
