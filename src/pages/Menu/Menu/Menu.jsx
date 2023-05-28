@@ -12,11 +12,12 @@ import soupImg from '../../../assets/menu/soup-bg.jpg';
 const Menu = () => {
     const [menu] = useMenu();
     // console.log(menu);
+    // const offered = menu.filter(item => item.category == 'offered');
     const offered = menu.filter(item => item.category == 'offered');
-    const desserts = menu.filter(item => item.category == 'desserts');
-    const salads = menu.filter(item => item.category == 'salad');
+    const dessert = menu.filter(item => item.category == 'desserts');
+    const salad = menu.filter(item => item.category == 'salad');
     const pizza = menu.filter(item => item.category == 'pizza');
-    const soups = menu.filter(item => item.category == 'soup');
+    const soup = menu.filter(item => item.category == 'soup');
     return (
         <div>
             <Helmet>
@@ -32,13 +33,13 @@ const Menu = () => {
                 item={offered}
             ></MenuCategory>
             {/* dessert menu items*/}
-            <MenuCategory item={desserts} title="Desserts" coverImg={desertImg}></MenuCategory>
+            <MenuCategory item={dessert} title="dessert" coverImg={desertImg}></MenuCategory>
             {/* pizza menu items */}
-            <MenuCategory item={pizza} title="Pizza" coverImg={pizzaImg}></MenuCategory>
+            <MenuCategory item={pizza} title="pizza" coverImg={pizzaImg}></MenuCategory>
             {/* salads menu items */}
-            <MenuCategory item={salads} title="Salads" coverImg={saladImg}></MenuCategory>
+            <MenuCategory item={salad} title="salad" coverImg={saladImg}></MenuCategory>
             {/* soup menu items */}
-            <MenuCategory item={soups} title="Soups" coverImg={soupImg}></MenuCategory>
+            <MenuCategory item={soup} title="soup" coverImg={soupImg}></MenuCategory>
 
         </div>
     );

@@ -3,19 +3,8 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import MenuItem from '../../Shared/MenuItem/MenuItem';
 import useMenu from '../../../hooks/useMenu';
 const PopularMenu = () => {
-    // const [menu, setMenu] = useState([]);
-    // useEffect(() => {
-    //     fetch('menu.json')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             const popularItems = data.filter(item => item.category === 'popular');
-    //             setMenu(popularItems);
-    //         });
-    // }, [])
-
     const [menu, loading] = useMenu();
     const popular = menu.filter(item => item.category == 'popular');
-    console.log(popular);
     return (
         <div className='mb-12'>
             <SectionTitle
