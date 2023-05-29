@@ -1,14 +1,11 @@
 import React from 'react';
+import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 const SignUp = () => {
-    const handleSignUp = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(name, email, password);
-    }
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        console.log(data);
+    } 
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -18,7 +15,7 @@ const SignUp = () => {
                 </div>
                 <div className="card flex-shrink-0 lg:w-1/2 w-full max-w-sm shadow-2xl bg-base-100">
                     <h2 className='text-center font-bold mt-4 text-3xl'>Sign Up</h2>
-                    <form onSubmit={handleSignUp} className="card-body">
+                    <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
@@ -26,9 +23,11 @@ const SignUp = () => {
                             <input
                                 type="text"
                                 placeholder="Enter your name"
+                                {...register("name",{required:true})} 
                                 name='name'
                                 className="input input-bordered"
                             />
+                            {errors.name && <span className='text-red-600'>This filed is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -37,9 +36,11 @@ const SignUp = () => {
                             <input
                                 type="email"
                                 placeholder="Enter your email"
+                                {...register("email",{required:true})} 
                                 name='email'
                                 className="input input-bordered"
                             />
+                            {errors.email && <span className='text-red-600'>This field is required</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -48,9 +49,11 @@ const SignUp = () => {
                             <input
                                 type="text"
                                 placeholder="Enter your password"
+                                {...register("password",{required:true,minLength:6,maxLength:20})} 
                                 name='password'
                                 className="input input-bordered"
                             />
+                            {errors.password?.type === 'required' && <p className='text-red-600'>This field is required</p>}
                         </div>
                         <div className="form-control mt-6">
                             <input
