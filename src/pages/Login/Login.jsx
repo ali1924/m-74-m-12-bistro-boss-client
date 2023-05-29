@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 const Login = () => {
     const captchaRef = useRef(null);
@@ -33,6 +34,7 @@ const Login = () => {
                     <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                 </div>
                 <div className="card flex-shrink-0 lg:w-1/2 w-full max-w-sm shadow-2xl bg-base-100">
+                    <h2 className='text-center font-bold mt-4 text-3xl'>Login</h2>
                     <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -86,6 +88,9 @@ const Login = () => {
                             />
                         </div>
                     </form>
+                    <p className='text-center my-4 text-orange-500 text-xl'><small>New here ?
+                    <Link to='/sign-up'> Create a new account</Link>
+                    </small></p>
                 </div>
             </div>
         </div>
