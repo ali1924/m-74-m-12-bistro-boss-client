@@ -109,9 +109,11 @@ const Login = () => {
                                     // onClick={handleCaptchaValidation}
                                 >Validate</button> */}
                             </div>
+                            {/* TODO:make button disable for captcha */}
                             <div className="form-control mt-6">
                                 <input
-                                    disabled={disable}
+                                    // disabled={disable}
+                                    disabled={false}
                                     type="submit"
                                     value="Login"
                                     className="btn btn-primary"
