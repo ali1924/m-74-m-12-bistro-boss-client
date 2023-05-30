@@ -10,7 +10,7 @@ const useCart = () => {
             return response.json();
         },
     })
-    return [cart, isLoading,refetch];
+    return [cart,refetch,isLoading];
 };
 
 export default useCart;
