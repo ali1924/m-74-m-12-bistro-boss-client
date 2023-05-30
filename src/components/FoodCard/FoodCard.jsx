@@ -18,8 +18,6 @@ const FoodCard = ({ item }) => {
                 image,
                 email: user.email,
             };
-
-            console.log('2222222222222222222')
             fetch('http://localhost:5000/carts',{
                 method: "POST",
                 headers: {
