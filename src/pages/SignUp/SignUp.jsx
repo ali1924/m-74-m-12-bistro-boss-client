@@ -2,10 +2,11 @@ import React from 'react';
 import { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from "react-hook-form";
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import Swal from 'sweetalert2';
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register,reset, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
     const onSubmit = data => {
@@ -15,18 +16,42 @@ const SignUp = () => {
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
+                console.log('new user: ',loggedUser);
                 // update user
                 updateUserProfile(name, photoURL)
                     .then(() => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Successfully updated',
+                        console.log('User profile info updated');
+                        // reset();
+                        const saveUser = { name:data.name, email:data.email };
+                        fetch('http://localhost:5000/users', {
+                            method: "POST",
+                            headers: {
+                                'content-type': 'application/json',
+                            },
+                            body: JSON.stringify(saveUser),
                         })
-                    }).catch(error => {
+                            .then(res => res.json())
+                            .then(data => {
+                                // console.log(data);
+                                if (data.insertedId) {
+                                    //refetch cart to update the number of items in the cart
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Food added on the cart',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    navigate('/');
+                                }
+                            })
+                        
+
+                    })
+                    .catch(error => {
                         console.log(error);
                     })
-                navigate('/')
+
             })
 
     }

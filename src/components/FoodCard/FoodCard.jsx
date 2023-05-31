@@ -29,7 +29,7 @@ const FoodCard = ({ item }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data);
+                    console.log(data);
                     if (data.insertedId) {
                     //refetch cart to update the number of items in the cart
                         refetch()
