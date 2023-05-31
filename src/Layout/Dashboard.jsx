@@ -3,8 +3,10 @@ import { FaCalendarAlt, FaHome, FaShoppingCart, FaWallet } from 'react-icons/fa'
 import { AiFillBook, AiOutlineMenu, AiTwotoneMail, AiTwotoneShopping } from 'react-icons/ai';
 import {  } from 'react-icons/md';
 import { NavLink, Outlet } from 'react-router-dom';
+import useCart from '../hooks/useCart';
 
 const Dashboard = () => {
+    const [cart] = useCart();
     return (
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -21,7 +23,12 @@ const Dashboard = () => {
                     <li><NavLink to='/dashboard/user-home'><FaHome />User Home</NavLink></li>
                     <li><NavLink to='/dashboard/reservations'><FaCalendarAlt />Reservation</NavLink></li>
                     <li><NavLink to='/dashboard/payment'><FaWallet />Payment History</NavLink></li>
-                    <li><NavLink to="/dashboard/my-cart"><FaShoppingCart />My Cart</NavLink></li>
+                    <li>
+                        <NavLink to="/dashboard/my-cart">
+                            <FaShoppingCart />My Cart
+                            <span className="badge badge-secondary">+{cart?.length}</span>
+                        </NavLink>
+                    </li>
                     <li><NavLink to='/dashboard/review'>Add Review</NavLink></li>
                     <li><NavLink to='/dashboard/booking'><AiFillBook/>My Booking</NavLink></li>
                     <div className='divider'></div>

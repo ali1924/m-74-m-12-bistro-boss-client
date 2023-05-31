@@ -3,13 +3,44 @@ import { Helmet } from 'react-helmet-async';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useCart from '../../../hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 const MyCart = () => {
-    const [cart] = useCart();
-    console.log(cart);
+    const [cart,refetch] = useCart();
+    // console.log(cart);
+    // how does reduce work
     const totalPrice = cart.reduce((sum, item) => item.price + sum, 0);
-    
+
+    const handleDeleteItem = (item) => {
+        console.log(item);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/carts/${item._id}`, {
+                    method:'DELETE'
+                }).then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                })
+            }
+        })
+    }
     return (
-        <div className=''>
+        <div className='w-full'>
             <Helmet>
                 <title>Bistro Boss | My cart</title>
             </Helmet>
@@ -18,7 +49,7 @@ const MyCart = () => {
                 subHeading="WANNA ADD MORE?"
             ></SectionTitle> */}
             <div className='uppercase font-semibold  h-[60px] flex justify-evenly item-center'>
-                <h3 className='text-3xl'>Total Items :{cart?.length}</h3>
+                <h3 className='text-3xl'>Total Items :{cart?.length || 0}</h3>
                 <h2 className='text-2xl'>Total  Price:{totalPrice}</h2>
                 <button className='btn btn-warning'>Pay</button>
             </div>
@@ -53,8 +84,10 @@ const MyCart = () => {
                                 <td>{item.name}</td>
                                 <td className='text-end'>{item.price}</td>
                                 <td>
-                                    <button className="btn btn-ghost px-2 py-0.5 bg-red-600">
-                                        <FaTrashAlt className='w-6 h-6 text-white'/>
+                                    <button
+                                        onClick={()=>handleDeleteItem(item)}
+                                        className="btn btn-ghost text-white bg-red-600 ">
+                                        <FaTrashAlt/>
                                     </button>
                                 </td>
                             </tr>)
