@@ -37,6 +37,9 @@ const SocialLogin = () => {
                         })
                         navigate(from, { replace: true });
                     }
+                    if (data.message) {
+                        navigate(from, { replace: true });
+                    }
                 })
             
         })
@@ -52,7 +55,7 @@ const SocialLogin = () => {
                     onClick={handleGoogleSignIn}
                     className="btn btn-circle btn-outline"
                 >
-                    <FaGoogle/>
+                    <FaGoogle />গুগল
                 </button>
             </div>
         </div>

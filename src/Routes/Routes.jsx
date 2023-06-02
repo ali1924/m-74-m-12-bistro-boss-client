@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import Secret from "../pages/Shared/Secret/Secret";
 import Dashboard from "../Layout/Dashboard";
 import MyCart from "../pages/Dashboard/MyCart/MyCart";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: 'my-cart',
                 element:<MyCart></MyCart>
+            },
+            {
+                path: 'all-users',
+                element:<AllUsers></AllUsers>
             }
         ]
     }
