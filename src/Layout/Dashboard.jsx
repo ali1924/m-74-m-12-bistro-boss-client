@@ -15,8 +15,8 @@ const Dashboard = () => {
   const [cart] = useCart();
 
   // TODO: load data from the server to have dynamic isAdmin based on Data
-  const isAdmin = true;
-  // const [isAdmin] = useAdmin();
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="drawer drawer-mobile ">

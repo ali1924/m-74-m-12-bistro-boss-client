@@ -12,6 +12,9 @@ import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
   // const captchaRef = useRef(null);
   const [disable, setDisable] = useState(true);
   const { signIn } = useContext(AuthContext);
